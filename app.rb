@@ -14,6 +14,11 @@ get("/stores") do
   erb(:stores)
 end
 
+get("/brands") do
+  @brands = Brand.all()
+  erb(:brands)
+end
+
 post("/stores") do
   name = params.fetch("name")
   store = Store.new({:name => name})
@@ -30,10 +35,9 @@ get("/store/:id") do
 end
 
 post("/brands") do
-  name = params.fetch("brand_name")
-  description = params.fetch("brand_description")
-  store_id = params.fetch("store_id").to_i()
-  brand = Brand.new({:name => name, :store_id => store_id, :description => description})
+  name = params.fetch("name")
+  description = params.fetch("description")
+  brand = Brand.new({:name => name, :description => description})
   if brand.save()
     erb(:success)
   else
@@ -60,6 +64,11 @@ delete("/stores/:id") do
   erb(:stores)
 end
 
+get("/brand/:id") do
+  @brand = Brand.find(params.fetch("id").to_i())
+  erb(:brand)
+end
+
 get("/brand_edit/:id") do
   @brand = Brand.find(params.fetch("id").to_i())
   erb(:brand_edit)
@@ -70,8 +79,8 @@ patch("/brands/:id") do
   description = params.fetch("description")
   brand = Brand.find(params.fetch("id").to_i())
   brand.update({:name => name, :description => description})
-  @stores = Store.all()
-  erb(:stores)
+  @brand = brand
+  erb(:brand)
 end
 
 delete("/brands/:id") do

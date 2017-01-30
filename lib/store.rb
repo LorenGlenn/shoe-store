@@ -5,6 +5,6 @@ class Store < ActiveRecord::Base
 
   private
   define_method(:title_case) do
-    self.name = name.downcase.split(/(\W)/).map(&:capitalize).join
+    self.name = name.titlecase
   end
 end

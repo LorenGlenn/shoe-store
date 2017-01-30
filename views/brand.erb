@@ -1,0 +1,18 @@
+<h1><%= @brand.name %></h1>
+<h3><%= @brand.description %></h3>
+<div>
+  <% if @brand.stores.any?() %>
+  <h3>A list of stores where this brand is sold:</h3>
+  <ul>
+    <% @brand.stores.each do |store| %>
+    <li><a href="/store/<%=store.id  %>"> <%= store.name %> </a></li>
+    <%end %>
+  </ul>
+  <% else %>
+  This brand isn't sold in stores!
+  <% end %>
+</div>
+
+<a href="/brand_edit/<%= @brand.id %>">Edit</a><br>
+
+<p><a href="/">Return to Main Page</a></p>
