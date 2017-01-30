@@ -13,72 +13,70 @@ get("/") do
   erb(:index)
 end
 
-# get("/stylists") do
-#   @stylists = Stylist.all()
-#   erb(:stylists)
-# end
-#
-# post("/stylists") do
-#   name = params.fetch("name")
-#   hours = params.fetch("hours")
-#   stylist = Stylist.new({:name => name, :hours => hours, :id => nil})
-#   stylist.save()
-#   @stylists = Stylist.all()
-#   erb(:stylists)
-# end
-#
-# get("/stylist/:id") do
-#   @stylist = Stylist.find(params.fetch("id").to_i())
-#   erb(:stylist)
-# end
-#
-# post("/clients") do
-#   name = params.fetch("client_name")
-#   phone = params.fetch("client_phone")
-#   stylist_id = params.fetch("stylist_id").to_i()
-#   client = Client.new({:name => name, :stylist_id => stylist_id, :phone => phone, :id => nil})
-#   client.save()
-#   @stylist = Stylist.find(stylist_id)
-#   erb(:stylist)
-# end
-#
-# get("/stylist_edit/:id") do
-#   @stylist = Stylist.find(params.fetch("id").to_i())
-#   erb(:stylist_edit)
-# end
-#
-# patch("/stylists/:id") do
-#   name = params.fetch("name")
-#   hours = params.fetch("hours")
-#   @stylist = Stylist.find(params.fetch("id").to_i())
-#   @stylist.update({:name => name, :hours => hours})
-#   erb(:stylist)
-# end
-#
-# delete("/stylists/:id") do
-#   @stylist = Stylist.find(params.fetch("id").to_i())
-#   @stylist.delete()
-#   @stylists = Stylist.all()
-#   erb(:stylists)
-# end
-#
-# get("/client_edit/:id") do
-#   @client = Client.find(params.fetch("id").to_i())
-#   erb(:client_edit)
-# end
-#
-# patch("/clients/:id") do
-#   name = params.fetch("name")
-#   phone = params.fetch("phone")
-#   client = Client.find(params.fetch("id").to_i())
-#   client.update({:name => name, :phone => phone})
-#   @stylists = Stylist.all()
-#   erb(:stylists)
-# end
-#
-# delete("/clients/:id") do
-#   @client = Client.find(params.fetch("id").to_i())
-#   @client.delete()
-#   @stylists = Stylist.all()
-#   erb(:stylists)
-# end
+get("/stores") do
+  @stores = Store.all()
+  erb(:stores)
+end
+
+post("/stores") do
+  name = params.fetch("name")
+  store = Store.new({:name => name})
+  store.save()
+  @stores = Store.all()
+  erb(:stores)
+end
+
+get("/store/:id") do
+  @store = Store.find(params.fetch("id").to_i())
+  erb(:store)
+end
+
+post("/brands") do
+  name = params.fetch("brand_name")
+  description = params.fetch("brand_description")
+  store_id = params.fetch("store_id").to_i()
+  brand = Brand.new({:name => name, :store_id => store_id, :description => description})
+  brand.save()
+  @store = Store.find(store_id)
+  erb(:store)
+end
+
+get("/store_edit/:id") do
+  @store = Store.find(params.fetch("id").to_i())
+  erb(:store_edit)
+end
+
+patch("/stores/:id") do
+  name = params.fetch("name")
+  @store = Store.find(params.fetch("id").to_i())
+  @store.update({:name => name})
+  erb(:store)
+end
+
+delete("/stores/:id") do
+  @store = Store.find(params.fetch("id").to_i())
+  @store.delete()
+  @stores = Store.all()
+  erb(:stores)
+end
+
+get("/brand_edit/:id") do
+  @brand = Brand.find(params.fetch("id").to_i())
+  erb(:brand_edit)
+end
+
+patch("/brands/:id") do
+  name = params.fetch("name")
+  description = params.fetch("description")
+  brand = Brand.find(params.fetch("id").to_i())
+  brand.update({:name => name, :description => description})
+  @stores = Store.all()
+  erb(:stores)
+end
+
+delete("/brands/:id") do
+  @brand = Brand.find(params.fetch("id").to_i())
+  @brand.delete()
+  @stores = Store.all()
+  erb(:stores)
+end

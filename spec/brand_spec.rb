@@ -1,6 +1,20 @@
-# require('spec_helper')
-#
-# describe(Client) do
+require('spec_helper')
+
+describe(Brand) do
+  describe("#store") do
+    it("tells which store the brand is in") do
+      test_store = Store.create({:name => "footlocker"})
+      test_brand = Brand.create({:name => "nike", :description => "large brand", :store_id => test_store.id})
+      expect(test_brand.store()).to(eq(test_store))
+    end
+  end
+  describe(Brand) do
+    it("validates presence of description") do
+      brand = Brand.new({:description => ""})
+      expect(brand.save()).to(eq(false))
+    end
+  end
+end
 #   describe(".all") do
 #     it("cleared each time, no clients") do
 #       expect(Client.all()).to(eq([]))
