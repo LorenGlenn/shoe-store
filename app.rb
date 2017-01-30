@@ -18,9 +18,11 @@ end
 post("/stores") do
   name = params.fetch("name")
   store = Store.new({:name => name})
-  store.save()
-  @stores = Store.all()
-  erb(:stores)
+  if @store.save()
+    erb(:success)
+  else
+    erb(:errors)
+  end
 end
 
 get("/store/:id") do
@@ -33,9 +35,11 @@ post("/brands") do
   description = params.fetch("brand_description")
   store_id = params.fetch("store_id").to_i()
   brand = Brand.new({:name => name, :store_id => store_id, :description => description})
-  brand.save()
-  @store = Store.find(store_id)
-  erb(:store)
+  if @brand.save()
+    erb(:success)
+  else
+    erb(:errors)
+  end
 end
 
 get("/store_edit/:id") do
