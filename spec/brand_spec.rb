@@ -8,11 +8,13 @@ describe(Brand) do
       expect(test_brand.store()).to(eq(test_store))
     end
   end
-  describe(Brand) do
     it("validates presence of description") do
       brand = Brand.new({:description => ""})
       expect(brand.save()).to(eq(false))
-    end
+  end
+    it("converts the name to title case") do
+      brand = Brand.create({:name => "nike", :description => "large brand"})
+      expect(brand.name()).to(eq("Nike"))
   end
 end
 #   describe(".all") do
