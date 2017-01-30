@@ -1,14 +1,12 @@
 ENV['RACK_ENV'] = 'test'
-require("rspec")
+require('rspec')
 require('sinatra/activerecord')
-require("brand")
-require("store")
-require("pry")
+require('brand')
+require('store')
 
-
-# RSpec.configure do |config|
-#   config.after(:each) do
-#     DB.exec("DELETE FROM brands *;")
-#     DB.exec("DELETE FROM stores *;")
-#   end
-# end
+RSpec.configure do |config|
+  config.before(:each) do
+    Brand.destroy_all
+    Store.destroy_all
+  end
+end

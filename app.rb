@@ -1,10 +1,9 @@
-require("sinatra")
-require("sinatra/reloader")
-also_reload("lib/**/*.rb")
-require("sinatra/activerecord")
-require("./lib/brand")
-require("./lib/store")
-require("pg")
+require('sinatra')
+require('sinatra/reloader')
+also_reload('lib/**/*.rb')
+require('sinatra/activerecord')
+require('./lib/brand')
+require('./lib/store')
 
 get("/") do
   erb(:index)
@@ -18,7 +17,7 @@ end
 post("/stores") do
   name = params.fetch("name")
   store = Store.new({:name => name})
-  if @store.save()
+  if store.save()
     erb(:success)
   else
     erb(:errors)
@@ -35,7 +34,7 @@ post("/brands") do
   description = params.fetch("brand_description")
   store_id = params.fetch("store_id").to_i()
   brand = Brand.new({:name => name, :store_id => store_id, :description => description})
-  if @brand.save()
+  if brand.save()
     erb(:success)
   else
     erb(:errors)

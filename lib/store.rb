@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  has_many(:brands)
+  has_and_belongs_to_many(:brands)
   validates(:name, :presence => true)
   before_save(:title_case)
 
