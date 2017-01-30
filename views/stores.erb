@@ -1,0 +1,13 @@
+<% if @stylists.any?() %>
+<p>Click on a stylist to see their clients:</p>
+
+<ul>
+  <% @stylists.each do |stylist| %>
+  <li><a href="/stylist/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no stylists yet!</p>
+<% end %>
+
+<a href="/">Home</a>
