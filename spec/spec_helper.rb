@@ -1,10 +1,9 @@
+ENV['RACK_ENV'] = 'test'
 require("rspec")
 require("pg")
 require("brand")
 require("store")
 require("pry")
-
-DB = PG.connect({:dbname => "company_test"})
 
 RSpec.configure do |config|
   config.after(:each) do
