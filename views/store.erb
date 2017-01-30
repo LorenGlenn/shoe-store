@@ -1,33 +1,33 @@
-<h1><%= @stylist.name() %></h1>
+<h1><%= @store.name() %></h1>
 
-<% if @stylist.clients().any?() %>
-  <h3>A list of clients for this stylist, click a client name to edit:</h3>
+<% if @store.brands().any?() %>
+  <h3>A list of brands for this store, click a brand name to edit:</h3>
 
   <ul>
-    <% @stylist.clients().each() do |client| %>
-      <li><a href="/client_edit/<%= client.id() %>"> <%= client.name() %> </a></li>
-      <li><%= client.phone() %> </li>
+    <% @store.brands().each() do |brand| %>
+      <li><a href="/brand_edit/<%= brand.id() %>"> <%= brand.name() %> </a></li>
+      <li><%= brand.description() %> </li>
       <hr>
     <% end %>
   </ul>
 
   <% else %>
-    <p>There are no clients assigned to this stylist!</p>
+    <p>There are no brands assigned to this store!</p>
   <% end %>
 
-  <h3>Add a client to <%= @stylist.name() %> </h3>
+  <h3>Add a brand to <%= @store.name() %> </h3>
 
-  <form action="/clients" method="post">
-    <input id="stylist_id" name="stylist_id" type="hidden" value="<%= @stylist.id() %>">
+  <form action="/brands" method="post">
+    <input id="store_id" name="store_id" type="hidden" value="<%= @store.id() %>">
 
-    <label for="client_name">Client's name:</label>
-    <input id="client_name" name="client_name" type="text">
+    <label for="brand_name">Brand name:</label>
+    <input id="brand_name" name="brand_name" type="text">
 
-    <label for="client_phone">Client's phone:</label>
-    <input id="client_phone" name="client_phone" type="text">
+    <label for="brand_description">Brand description:</label>
+    <input id="brand_description" name="brand_description" type="text">
 
-    <button type="submit">Add client</button>
+    <button type="submit">Add brand</button>
   </form>
   <hr>
-  <p><a href="/stylist_edit/<%= @stylist.id() %>">Edit <%= @stylist.name() %></a></p>
+  <p><a href="/store_edit/<%= @store.id() %>">Edit <%= @store.name() %></a></p>
   <p><a href="/">Return to Main Page</a></p>

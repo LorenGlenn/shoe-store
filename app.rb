@@ -6,9 +6,6 @@ require("./lib/brand")
 require("./lib/store")
 require("pg")
 
-
-DB = PG.connect({:dbname => "company"})
-
 get("/") do
   erb(:index)
 end

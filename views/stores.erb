@@ -1,13 +1,13 @@
-<% if @stylists.any?() %>
-<p>Click on a stylist to see their clients:</p>
+<% if @stores.any?() %>
+<p>Click on a store to see their brands:</p>
 
 <ul>
-  <% @stylists.each do |stylist| %>
-  <li><a href="/stylist/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+  <% @stores.each do |store| %>
+  <li><a href="/store/<%= store.id() %>"><%= store.name() %></a></li>
   <% end %>
 </ul>
 <% else %>
-<p>There are no stylists yet!</p>
+<p>There are no stores yet!</p>
 <% end %>
 
 <a href="/">Home</a>
