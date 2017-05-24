@@ -5,7 +5,5 @@ class CreateStores < ActiveRecord::Migration[5.0]
 
       t.timestamps()
     end
-
-    add_column(:brands, :store_id, :integer)
   end
 end

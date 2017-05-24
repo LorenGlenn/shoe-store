@@ -31,11 +31,12 @@ end
 
 get("/store/:id") do
   @store = Store.find(params.fetch("id").to_i())
+  @brands = Brand.all
   erb(:store)
 end
 
 post("/brands") do
-  name = params.fetch("name")
+  name = params.fetch("brand-name")
   description = params.fetch("description")
   brand = Brand.new({:name => name, :description => description})
   if brand.save()
@@ -54,6 +55,17 @@ patch("/stores/:id") do
   name = params.fetch("name")
   @store = Store.find(params.fetch("id").to_i())
   @store.update({:name => name})
+  @brands = Brand.all
+  erb(:store)
+end
+
+patch("/store/:id") do
+  brand_ids = params.fetch("brand_ids")
+  @store = Store.find(params.fetch('id'))
+  @brands = Brand.all
+  brand_ids.each do |id|
+    @store.brands.push(Brand.find(id))
+  end
   erb(:store)
 end
 

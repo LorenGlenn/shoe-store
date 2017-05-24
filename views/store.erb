@@ -16,6 +16,13 @@
   <% end %>
 
   <h3>Add a brand to <%= @store.name() %> </h3>
+  <form action="/store/<%= @store.id() %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <% @brands.each do |brand| %>
+      <input type="checkbox" name="brand_ids[]" value="<%= brand.id %>"> <%= brand.name %>
+    <% end %>
+    <button type="submit" name="button">Add brand</button>
+  </form>
 
   <hr>
   <p><a href="/store_edit/<%= @store.id() %>">Edit <%= @store.name() %></a></p>
